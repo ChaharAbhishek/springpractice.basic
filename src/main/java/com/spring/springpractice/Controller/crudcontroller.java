@@ -1,6 +1,7 @@
 package com.spring.springpractice.Controller;
 
 import com.spring.springpractice.model.employee;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,8 @@ public class crudcontroller {
      */
     List<employee> empList=new ArrayList<>();   //class level declared (globally)
 
+/*
+    //hard coded method, in this we pass the value from the code
     @RequestMapping("/add_emp")
     public String add() //create end points
     {
@@ -26,6 +29,21 @@ public class crudcontroller {
         empList.add(emp);
         return emp.getName()+"Added Successfully";
     }
+
+ */
+
+
+    @RequestMapping("/add_emp")
+    public String add(@RequestBody employee emp)    //dynamically passing the value
+    //here we pass the emp object for employee, now we initialise data from postman
+    //to send any data to object from postman we use annotation '@RequestBody class_name Object_name'
+    {
+        empList.add(emp);
+        return emp.getName()+" Added Successfully";
+    }
+
+
+
 
     @RequestMapping("/get_all_emp")
     public List <employee> getemployeeList() //get end points
